@@ -1,4 +1,4 @@
-# Your Project's Name
+# CI-Milestone 3: Internet Film Database
 
 One or two paragraphs providing an overview of your project.
 
