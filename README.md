@@ -1,11 +1,61 @@
 # CI-Milestone 3: Internet Film Database
 
-One or two paragraphs providing an overview of your project.
+The purpose of this project will be to make a web accessible database of films; users will be able to view, add, and edit records of films, and the same for actors.
 
-Essentially, this part is your sales pitch.
+The movie database will contain information about the movie such as name, age rating, genre, running time, the synopsis, and a list of staring actors. Users will also be able to post comments/reviews of the movie.
+
+The actor database will feature their names, age, a brief background, and list the movies they star in.
+
+A demonstration of this project is located here: [ak87-ci-milestone3.herokuapp.com](https://ak87-ci-milestone3.herokuapp.com/)
  
 ## UX
  
+### Intended Audience
+
+As an authentication system is out of scope for this project, the assumed target userbase would be for a private group that can trust its members to use the honour system.  
+Perhaps it is a group of film enthusiasts that want to catalogue and share their opinions of movies they have watched to other members of their group?
+
+### User Stories
+
+###### User 1
+> As a movie watcher, I want to be able to visit a page with a list of movies and I want to be able to search it, so I can a find a movie to read about
+
+###### User 2
+> As the above user, I want to then go to a page containing information about the movie, so I can be informed about the movie
+
+###### User 3
+> As a movie reviewer, I want to be able to add a review to a movie, so I give my opinion of the movie to other uses
+
+###### User 4
+> As an actor fan, I want to be able to go to a page with a list of actors and I want to be able to search it, so I can find an actor I like and read about them and see what other movies they are in
+
+###### User 5
+> As the above user, I want to then go to a page with the details of the actor I am interested in, so I can read about them and find what movies they were in
+
+###### User 6
+> As a contributor, I want to be able to add a new movie to the database
+
+###### User 7
+> As a contributor, I want to be able to edit the details of an existing movie, to correct mistakes or add new/missing information etc
+
+###### User 8
+> As a contributor, I want to be able to add a new actor to the database
+
+###### User 9
+> As a contributor, I want to be able to edit the details of an existing actor, to correct mistakes, or add new/missing information etc
+
+###### User 10
+> As a maintainer, I want to be able to delete reviews on movies, to remove inappropriate ones
+
+
+### Designs
+
+##### Data Requirements
+
+##### Wireframes
+
+##### Code Logic
+
 Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
 
 In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
@@ -13,7 +63,7 @@ In particular, as part of this section we recommend that you provide a list of U
 
 This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
 
-############################################################################################################
+------------------------------------------------------------------
 
 ## Features
 
@@ -28,7 +78,7 @@ For some/all of your features, you may choose to reference the specific project 
 In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
 
 ### Features Left to Implement
-- Another feature idea
+- Authentication, if the site would be to grow in scope to expand its userbase to the public, or even a larger private group, an authentication system would be needed as some people are trolls and enjoy deleting/defacing the records 
 
 ## Technologies Used
 
