@@ -52,17 +52,48 @@ Perhaps it is a group of film enthusiasts that want to catalogue and share their
 
 ##### Data Requirements
 
+###### Movies
+
+- id - unique id
+- movie_name - name of the movie
+- art - link to cover art
+- released - date movie released
+- runtime - the runtime of the movie
+- genre - movie genre (could be a reference id to a genres table?)
+- plot - the synopsis of the movie (max: ~500 chars)
+- rating - age rating (could be a reference id to a ratings table?)
+- [actors] - an array of actor-ids from the actors collection
+- [reviews] - an matrix of user reviews, the below information
+    - review_id - index id of the review
+    - submitter - who submitted the review (defaults to anonymous)
+    - review - text of the review (max: ~500 chars)
+    - score - score given
+    - date - date submitted
+- [meta] - meta data of the record
+    - date_created - date record was submitted
+    - date_edited - date record was amended
+
+###### Actors
+
+- id - unique id
+- actor_name - name of the actor
+- photo - headshot photo of the actor
+- background - brief background of the actor (max: ~500 chars)
+- [meta] - meta data of the record
+    - date_created - date record was submitted
+    - date_edited - date record was amended
+
 ##### Wireframes
+
+For Desktop wireframes see [docs/wireframes/desktop.pdf](docs/wireframes/desktop.pdf)
+
+For Mobile wireframes see [TBC]
 
 ##### Code Logic
 
-Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
 
-In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
-- As a user type, I want to perform an action, so that I can achieve a goal.
-
-This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
-
+------------------------------------------------------------------
+------------------------------------------------------------------
 ------------------------------------------------------------------
 
 ## Features
