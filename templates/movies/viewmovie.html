@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block content %}
+<h3>{{movie.movie_name}}</h3>
+<img src={{movie.art}}></img>
+<p>{{movie.released}}</p>
+<p>{{movie.genre}}</p>
+<p>{{movie.runtime}}</p>
+<p>{{movie.rating}}</p>
+<p>{{movie.plot}}</p>
+<p>
+    {% for actor in movie.actors %}
+    <span>{{actor}} </span> {% endfor %}
+</p>
+
+<div>{% for review in movie.reviews %}
+    <div>
+        {{review.submitter}} on {{review.date}} | {{review.score}}
+    </div>
+    <div>
+        {{review.review}}
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

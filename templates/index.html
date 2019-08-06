@@ -1,0 +1,44 @@
+{% extends 'base.html' %} {% block content %}
+<!--Movies Table-->
+<table>
+    <thead>
+        <tr>
+            <th>Movie Name</th>
+            <th>Released</th>
+            <th>Genre</th>
+        </tr>
+    </thead>
+    {% for movie in movies %}
+    <tr>
+        <td>
+            <a href="{{url_for('view_movie', movie_id=movie._id)}}">
+                {{movie.movie_name}}
+            </a>
+        </td>
+        <td>{{movie.released}}</td>
+        <td>{{movie.genre}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+<!--Actors Table-->
+<table>
+    <thead>
+        <tr>
+            <th>Actor Name</th>
+        </tr>
+    </thead>
+    {% for actor in actors %}
+    <tr>
+        <td>
+            <a href="{{url_for('view_actor', actor_id=actor._id)}}">
+                {{actor.actor_name}}
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+{% endblock %}

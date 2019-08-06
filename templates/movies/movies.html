@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block content %}
+<!--Movies Table-->
+<table>
+    <thead>
+        <tr>
+            <th>Movie Name</th>
+            <th>Released</th>
+            <th>Genre</th>
+        </tr>
+    </thead>
+    {% for movie in movies %}
+    <tr>
+        <td>
+            <a href="{{url_for('view_movie', movie_id=movie._id)}}">
+                {{movie.movie_name}}
+            </a>
+        </td>
+        <td>{{movie.released}}</td>
+        <td>{{movie.genre}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
