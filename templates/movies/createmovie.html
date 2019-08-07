@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% block content %}
+<form action="{{url_for('insert_movie')}}" method="POST">
+    <input type="text" id="movie_name" name="movie_name" placeholder="Movie Name" />
+    <input type="text" id="art" name="art" placeholder="Cover Art Link"  />
+    <input type="number" id="released" name="released" placeholder="Release Year" />
+    <input type="text" id="genre" name="genre" placeholder="Genre" />
+    <input type="number" id="runtime" name="runtime" placeholder="Runtime" />
+    <input type="text" id="rating" name="rating" placeholder="Age Rating" />
+    <textarea rows="5" id="plot" name="plot" placeholder="Plot Summary"></textarea>
+    <input type="submit" value="Submit" />
+</form>
+{% endblock %}

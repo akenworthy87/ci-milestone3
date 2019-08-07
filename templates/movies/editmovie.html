@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% block content %}
+<form action="{{url_for('update_movie', movie_id=movie._id)}}" method="POST">
+    <input type="text" id="movie_name" name="movie_name" placeholder="Movie Name" value="{{movie.movie_name}}" />
+    <input type="text" id="art" name="art" placeholder="Cover Art Link" value="{{movie.art}}" />
+    <input type="number" id="released" name="released" placeholder="Release Year" value="{{movie.released}}" />
+    <input type="text" id="genre" name="genre" placeholder="Genre" value="{{movie.genre}}" />
+    <input type="number" id="runtime" name="runtime" placeholder="Runtime" value="{{movie.runtime}}" />
+    <input type="text" id="rating" name="rating" placeholder="Age Rating" value="{{movie.rating}}" />
+    <textarea rows="5" id="plot" name="plot" placeholder="Plot Summary">{{movie.plot}}</textarea>
+    <input type="submit" value="Submit" />
+</form>
+{% endblock %}
