@@ -1,0 +1,9 @@
+{% extends 'base.html' %} {% block content %}
+<h4>Edit Actor: {{actor.actor_name}}</h4>
+<form action="{{url_for('update_actor', actor_id=actor._id)}}" method="POST" class="col s12">
+    <input type="text" id="actor_name" name="actor_name" placeholder="Actor Name" value="{{actor.actor_name}}" />
+    <input type="text" id="photo" name="photo" placeholder="Cover Photo Link" value="{{actor.photo}}" />
+    <textarea rows="5" id="background" name="background" placeholder="Background Summary">{{actor.background}}</textarea>
+    <input type="submit" value="Submit" />
+</form>
+{% endblock %}
