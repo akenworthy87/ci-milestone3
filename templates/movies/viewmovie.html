@@ -1,22 +1,51 @@
 {% extends 'base.html' %} {% block content %}
-<a href="{{url_for('edit_movie', movie_id=movie._id)}}">Edit</a>
-<h3>{{movie.movie_name}}</h3>
-<img src={{movie.art}}></img>
-<p>{{movie.released}}</p>
-<p>{{movie.genre}}</p>
-<p>{{movie.runtime}}</p>
-<p>{{movie.rating}}</p>
-<p>{{movie.plot}}</p>
-<p>
-    {% for actor in movie.actors %}
-    <span>{{actor}} </span> {% endfor %}
-</p>
 
-<div>{% for review in movie.reviews %}
-    <div>
-        {{review.submitter}} on {{review.date}} | {{review.score}}
+<div class="row">
+    <div class="col s12">
+        <h4>{{movie.movie_name}}</h4> <a href="{{url_for('edit_movie', movie_id=movie._id)}}">Edit Record</a>
     </div>
-    <div>
+</div>
+
+<div class="row">
+    <div class="col s12 m3 center-align">
+        <img class="responsive-img thumbnail" src={{movie.art}}></img>
+    </div>
+    <div class="col s12 m9">
+        <p><strong>Release Date: </strong>{{movie.released}}</p>
+        <p><strong>Genre: </strong>{{movie.genre}}</p>
+        <p><strong>Runtime: </strong>{{movie.runtime}}</p>
+        <p><strong>Age Rating: </strong>{{movie.rating}}</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12">
+        <p>{{movie.plot}}</p>
+    </div>
+</div>
+
+<h5>Actors</h5>
+<div class="row">
+    <div class="col s12">
+        {% for actor, value in movie.actors.items() %}
+        <span><a href="{{url_for('view_actor', actor_id=value)}}">{{actor}} </a></span> 
+        {% endfor %}
+    </div>
+</div>
+
+<h5>Reviews</h5>
+<div class="row">{% for review in movie.reviews %}
+    <div class="col s12 review-header">
+        <div class="row">
+            <div class="col s12 m10">
+                {{review.submitter}} on {{review.date}} 
+            </div>
+            <div class="col s12 m2">
+                Score: {{review.score}}
+            </div>
+        </div>
+    </div>
+    <div class="col s12 review-body">
         {{review.review}}
     </div>
     {% endfor %}

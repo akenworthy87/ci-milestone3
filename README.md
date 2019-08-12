@@ -58,7 +58,7 @@ Perhaps it is a group of film enthusiasts that want to catalogue and share their
 - movie_name - name of the movie
 - art - link to cover art
 - released - date movie released
-- runtime - the runtime of the movie
+- runtime - the runtime of the movie (in minutes)
 - genre - movie genre (could be a reference id to a genres table?)
 - plot - the synopsis of the movie (max: ~500 chars)
 - rating - age rating (could be a reference id to a ratings table?)
@@ -73,12 +73,67 @@ Perhaps it is a group of film enthusiasts that want to catalogue and share their
     - date_created - date record was submitted
     - date_edited - date record was amended
 
+
+Example:
+
+    {
+      "_id": {
+        "$oid": "5d44361c1c9d44000059417b"
+      },
+      "movie_name": "Robocop",
+      "art": "http://t1.gstatic.com/images?q=tbn:ANd9GcQFgpXvtiPPxziaD8ElfgkJAz8V1bke1hElfwyB0lo28P533aj7",
+      "released": {
+        "$date": {
+          "$numberLong": "536457600000"
+        }
+      },
+      "runtime": {
+        "$numberInt": "0"
+      },
+      "genre": "Police",
+      "plot": "Part Man, Part Machine: All Cop",
+      "rating": "18",
+      "actors": [
+        ""
+      ],
+      "reviews": {
+        "review_id": {
+          "$oid": "5d44379325e05e00005eb5c0"
+        },
+        "submitter": "Anonymous",
+        "review": "Awesome!!",
+        "score": {
+          "$numberInt": "5"
+        },
+        "date": {
+          "$date": {
+            "$numberLong": "1546300800000"
+          }
+        }
+      },
+      "meta": {
+        "date_created": {
+          "$date": {
+            "$numberLong": "536457600000"
+          }
+        },
+        "date_edited": {
+          "$date": {
+            "$numberLong": "536457600000"
+          }
+        }
+      }
+    }
+
 ###### Actors
+
+
 
 - id - unique id
 - actor_name - name of the actor
 - photo - headshot photo of the actor
 - background - brief background of the actor (max: ~500 chars)
+- [movies] - an array of movies actor is in
 - [meta] - meta data of the record
     - date_created - date record was submitted
     - date_edited - date record was amended

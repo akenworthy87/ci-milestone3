@@ -1,5 +1,6 @@
 {% extends 'base.html' %} {% block content %}
-<form action="{{url_for('update_movie', movie_id=movie._id)}}" method="POST">
+<h4>Edit Movie: {{movie.movie_name}}</h4>
+<form action="{{url_for('update_movie', movie_id=movie._id)}}" method="POST" class="col s12">
     <input type="text" id="movie_name" name="movie_name" placeholder="Movie Name" value="{{movie.movie_name}}" />
     <input type="text" id="art" name="art" placeholder="Cover Art Link" value="{{movie.art}}" />
     <input type="number" id="released" name="released" placeholder="Release Year" value="{{movie.released}}" />

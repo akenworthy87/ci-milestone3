@@ -1,9 +1,21 @@
 {% extends 'base.html' %} {% block content %}
-<h3>{{actor.actor_name}}</h3>
-<img src={{actor.photo}}></img>
-<p>{{actor.background}}</p>
-<p>
-    {% for movie in actor.movies %}
-    <span>{{movie}} </span> {% endfor %}
-</p>
+
+<h4>{{actor.actor_name}}</h4> <a href="{{url_for('edit_actor', actor_id=actor._id)}}">Edit</a>
+
+<div class="row">
+    <div class="col s12 m3 center-align">
+        <img class="responsive-img thumbnail" src={{actor.photo}}></img>
+    </div>
+    <div class="col s12 m9">
+        <p>{{actor.background}}</p>
+    </div>
+</div>
+
+<h5>Stars in: </h5>
+<div class="row">
+    <div class="col s12">
+        {% for movie in actor.movies %}
+        <span>{{movie}} </span> {% endfor %}
+    </div>
+</div>
 {% endblock %}
