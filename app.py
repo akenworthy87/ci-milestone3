@@ -30,6 +30,7 @@ def add_movie():
 
 @app.route('/insert_movie', methods=['POST'])
 def insert_movie():
+    
     #validation goes here
     movies = mongo.db.movies
     movies.insert_one(request.form.to_dict())
@@ -49,13 +50,13 @@ def update_movie(movie_id):
     {"$set":{
         'movie_name': request.form.get('movie_name'),
         'art': request.form.get('art'),
-        'released': request.form.get('released'),
+        'released': int(request.form.get('released')),
         'genre': request.form.get('genre'),
-        'runtime':request.form.get('runtime'),
+        'runtime':int(request.form.get('runtime')),
         'rating':request.form.get('rating'),
         'plot':request.form.get('plot')
     }})
-    return redirect(url_for('list_movies'))
+    return redirect(url_for('view_movie', movie_id=movie_id))
 
 ## View Movie
 @app.route('/view_movie/<movie_id>')
@@ -97,7 +98,7 @@ def update_actor(actor_id):
         'photo': request.form.get('photo'),
         'background': request.form.get('background')
     }})
-    return redirect(url_for('list_actors'))
+    return redirect(url_for('view_actor', actor_id=actor_id))
 
 ## View actor
 @app.route('/view_actor/<actor_id>')
@@ -105,6 +106,9 @@ def view_actor(actor_id):
     actor_details = mongo.db.actors.find_one({"_id": ObjectId(actor_id)})
     return render_template('actors/viewactor.html', actor=actor_details)
 
+# Validation Functions #########################################################
+def validate_movie(movie):
+    return True
 
 # Misc #########################################################################
 if __name__ == '__main__':
