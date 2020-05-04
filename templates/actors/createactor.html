@@ -1,9 +1,0 @@
-{% extends 'base.html' %} {% block content %}
-<h4>Add Actor</h4>
-<form action="{{url_for('insert_actor')}}" method="POST" class="col s12">
-    <input type="text" id="actor_name" name="actor_name" placeholder="Actor Name" />
-    <input type="text" id="photo" name="photo" placeholder="Cover Photo Link" />
-    <textarea rows="5" id="background" name="background" placeholder="Background Summary"></textarea>
-    <input type="submit" value="Submit" />
-</form>
-{% endblock %}

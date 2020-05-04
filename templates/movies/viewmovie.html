@@ -28,7 +28,7 @@
 <div class="row">
     <div class="col s12">
         {% for actor, value in movie.actors.items() %}
-        <span><a href="{{url_for('view_actor', actor_id=value)}}">{{actor}} </a></span> 
+        <span>{{actor}}</span> 
         {% endfor %}
     </div>
 </div>

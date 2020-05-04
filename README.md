@@ -1,10 +1,10 @@
 # CI-Milestone 3: Internet Film Database
 
-The purpose of this project will be to make a web accessible database of films; users will be able to view, add, and edit records of films, and the same for actors.
+The purpose of this project will be to make a web accessible database of films; users will be able to view, add, and edit records of films, ~~and the same for actors~~.
 
 The movie database will contain information about the movie such as name, age rating, genre, running time, the synopsis, and a list of staring actors. Users will also be able to post comments/reviews of the movie.
 
-The actor database will feature their names, age, a brief background, and list the movies they star in.
+~~The actor database will feature their names, age, a brief background, and list the movies they star in.~~
 
 A demonstration of this project is located here: [ak87-ci-milestone3.herokuapp.com](https://ak87-ci-milestone3.herokuapp.com/)
  
@@ -26,11 +26,11 @@ Perhaps it is a group of film enthusiasts that want to catalogue and share their
 ###### User 3
 > As a movie reviewer, I want to be able to add a review to a movie, so I give my opinion of the movie to other uses
 
-###### User 4
-> As an actor fan, I want to be able to go to a page with a list of actors and I want to be able to search it, so I can find an actor I like and read about them and see what other movies they are in
+###### ~~User 4~~
+> ~~As an actor fan, I want to be able to go to a page with a list of actors and I want to be able to search it, so I can find an actor I like and read about them and see what other movies they are in~~
 
-###### User 5
-> As the above user, I want to then go to a page with the details of the actor I am interested in, so I can read about them and find what movies they were in
+###### ~~User 5~~
+> ~~As the above user, I want to then go to a page with the details of the actor I am interested in, so I can read about them and find what movies they were in~~
 
 ###### User 6
 > As a contributor, I want to be able to add a new movie to the database
@@ -38,11 +38,11 @@ Perhaps it is a group of film enthusiasts that want to catalogue and share their
 ###### User 7
 > As a contributor, I want to be able to edit the details of an existing movie, to correct mistakes or add new/missing information etc
 
-###### User 8
-> As a contributor, I want to be able to add a new actor to the database
+###### ~~User 8~~
+> ~~As a contributor, I want to be able to add a new actor to the database~~
 
-###### User 9
-> As a contributor, I want to be able to edit the details of an existing actor, to correct mistakes, or add new/missing information etc
+###### ~~User 9~~
+> ~~As a contributor, I want to be able to edit the details of an existing actor, to correct mistakes, or add new/missing information etc~~
 
 ###### User 10
 > As a maintainer, I want to be able to delete reviews on movies, to remove inappropriate ones
