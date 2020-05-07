@@ -15,12 +15,13 @@
         <p><strong>Genre: </strong>{{movie.genre}}</p>
         <p><strong>Runtime: </strong>{{movie.runtime}}</p>
         <p><strong>Age Rating: </strong>{{movie.rating}}</p>
+        <p><strong>Director: </strong>{{movie.director}}</p>
     </div>
 </div>
 
 <div class="row">
     <div class="col s12">
-        <pre>{{movie.plot}}</pre>
+        <div style="white-space: pre-wrap;">{{movie.plot}}</div>
     </div>
 </div>
 
@@ -54,5 +55,8 @@
     {% endfor %}
 </div>
 
+<hr>
+<p>Record Created: {{movie.meta.date_created if movie.meta else ''}}</p>
+<p>Record Updated: {{movie.meta.date_updated if movie.meta else ''}}</p>
 
 {% endblock %}

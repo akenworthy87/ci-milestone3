@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -30,10 +31,11 @@ def add_movie():
 
 @app.route('/insert_movie', methods=['POST'])
 def insert_movie():
-    
+    moviesDB = mongo.db.movies
+    movie = request.form.to_dict()
+    movie.update({'meta':{'date_updated':datetime.utcnow(), 'date_created':datetime.utcnow()}})
     #validation goes here
-    movies = mongo.db.movies
-    movies.insert_one(request.form.to_dict())
+    moviesDB.insert_one(movie)
     return redirect(url_for('list_movies'))
 
 ## Edit movie functions
@@ -45,8 +47,8 @@ def edit_movie(movie_id):
 
 @app.route('/update_movie/<movie_id>', methods=['POST'])
 def update_movie(movie_id):
-    movies = mongo.db.movies
-    movies.update_one( {'_id': ObjectId(movie_id)},
+    moviesDB = mongo.db.movies
+    moviesDB.update_one( {'_id': ObjectId(movie_id)},
     {"$set":{
         'movie_name': request.form.get('movie_name'),
         'art': request.form.get('art'),
@@ -54,7 +56,9 @@ def update_movie(movie_id):
         'genre': request.form.get('genre'),
         'runtime':int(request.form.get('runtime')),
         'rating':request.form.get('rating'),
-        'plot':request.form.get('plot')
+        'director':request.form.get('director'),
+        'plot':request.form.get('plot'),
+        'meta.date_updated':datetime.utcnow()
     }})
     return redirect(url_for('view_movie', movie_id=movie_id))
 
