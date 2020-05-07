@@ -20,21 +20,24 @@
 
 <div class="row">
     <div class="col s12">
-        <p>{{movie.plot}}</p>
+        <pre>{{movie.plot}}</pre>
     </div>
 </div>
 
 <h5>Actors</h5>
 <div class="row">
     <div class="col s12">
-        {% for actor, value in movie.actors.items() %}
-        <span>{{actor}}</span> 
-        {% endfor %}
+        {% if movie.actors %}
+            {% for actor, value in movie.actors.items() %}
+            <span>{{actor}}</span> 
+            {% endfor %}
+        {% endif %}
     </div>
 </div>
 
 <h5>Reviews</h5>
-<div class="row">{% for review in movie.reviews %}
+<div class="row">
+    {% for review in movie.reviews %}
     <div class="col s12 review-header">
         <div class="row">
             <div class="col s12 m10">
