@@ -6,8 +6,8 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-app.config["MONGO_DBNAME"] = 'ifdb'
-app.config["MONGO_URI"] = 'mongodb+srv://root:{}@ci-datacentricpy-e8zwz.mongodb.net/ifdb?retryWrites=true&w=majority'.format(os.environ.get('MONGODB_PASS')) 
+app.config["MONGO_DBNAME"] = os.environ.get('MONGODB_DBNAME')
+app.config["MONGO_URI"] = os.environ.get('MONGODB_URI')
 
 mongo = PyMongo(app)
 
