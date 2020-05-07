@@ -164,7 +164,9 @@ For some/all of your features, you may choose to reference the specific project 
 In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
 
 ### Features Left to Implement
-- Authentication, if the site would be to grow in scope to expand its userbase to the public, or even a larger private group, an authentication system would be needed as some people are trolls and enjoy deleting/defacing the records 
+- Authentication: If the site would be to grow in scope to expand its userbase to the public, or even a larger private group, an authentication system would be needed as some people are trolls and enjoy deleting/defacing the records 
+- Actors pages: Originally I had intended to have a section for actor information, and had planned to link them to the movies pages and vice versa via a sub-object containing the Unique IDs and Name of the target, 
+  this was easy to do on the backend and I did have a working proof of concept on the frontend, but I was unable to find an elegate way to implement the full feature on the frontend, so it has been cut.
 
 ## Technologies Used
 
