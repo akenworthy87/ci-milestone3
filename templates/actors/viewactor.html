@@ -1,9 +1,0 @@
-{% extends 'base.html' %} {% block content %}
-<h3>{{actor.actor_name}}</h3>
-<img src={{actor.photo}}></img>
-<p>{{actor.background}}</p>
-<p>
-    {% for movie in actor.movies %}
-    <span>{{movie}} </span> {% endfor %}
-</p>
-{% endblock %}

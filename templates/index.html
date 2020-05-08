@@ -1,5 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 <!--Movies Table-->
+<h5><a href="{{url_for('list_movies')}}">Latest Movies</a></h5>
 <table>
     <thead>
         <tr>
@@ -17,25 +18,6 @@
         </td>
         <td>{{movie.released}}</td>
         <td>{{movie.genre}}</td>
-    </tr>
-    {% endfor %}
-</table>
-
-
-<!--Actors Table-->
-<table>
-    <thead>
-        <tr>
-            <th>Actor Name</th>
-        </tr>
-    </thead>
-    {% for actor in actors %}
-    <tr>
-        <td>
-            <a href="{{url_for('view_actor', actor_id=actor._id)}}">
-                {{actor.actor_name}}
-            </a>
-        </td>
     </tr>
     {% endfor %}
 </table>
