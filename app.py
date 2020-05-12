@@ -15,14 +15,15 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template("index.html", movies=mongo.db.movies.find(), actors=mongo.db.actors.find())
+    # Returns a list of the last ten updated movie records
+    return render_template("index.html", movies=mongo.db.movies.find().sort('meta.date_updated', -1).limit(10))
 
 
 # Movie Pages ##################################################################
 ## Movies list
 @app.route('/movies')
 def list_movies():
-    return render_template("movies/movies.html", movies=mongo.db.movies.find())
+    return render_template("movies/movies.html", movies=mongo.db.movies.find().sort('movie_name', 1))
 
 ## Add movie functions
 @app.route('/add_movie')
