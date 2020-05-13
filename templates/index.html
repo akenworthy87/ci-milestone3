@@ -11,12 +11,12 @@
     </thead>
     {% for movie in movies %}
     <tr>
-        <td>
+        <td class="capitalize">
             <a href="{{url_for('view_movie', movie_id=movie._id)}}">
                 {{movie.movie_name}}
             </a>
         </td>
-        <td>{{movie.released}}</td>
+        <td>{{movie.released if movie.released > 0 else ''}}</td>
         <td>{{movie.genre}}</td>
     </tr>
     {% endfor %}

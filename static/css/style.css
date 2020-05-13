@@ -1,3 +1,7 @@
 .thumbnail {
     max-height: 15em;
 }
+
+.capitalize {
+  text-transform: capitalize;
+  }

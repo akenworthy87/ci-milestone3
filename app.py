@@ -15,14 +15,16 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template("index.html", movies=mongo.db.movies.find(), actors=mongo.db.actors.find())
+    # Returns a list of the last ten updated movie records
+    return render_template("index.html", movies=mongo.db.movies.find().sort('meta.date_updated', -1).limit(10))
 
 
 # Movie Pages ##################################################################
 ## Movies list
 @app.route('/movies')
 def list_movies():
-    return render_template("movies/movies.html", movies=mongo.db.movies.find())
+    # Returns a list of movie records, by name ASC
+    return render_template("movies/movies.html", movies=mongo.db.movies.find().sort('movie_name', 1))
 
 ## Add movie functions
 @app.route('/add_movie')
@@ -33,7 +35,14 @@ def add_movie():
 def insert_movie():
     moviesDB = mongo.db.movies
     movie = request.form.to_dict()
-    movie.update({'meta':{'date_updated':datetime.utcnow(), 'date_created':datetime.utcnow()}})
+    # transforms
+    movie.update({
+        'released':int(movie['released'] or 0),
+        'runtime':int(movie['runtime'] or 0),
+        'movie_name':movie['movie_name'].lower(),
+        'meta':{'date_updated':datetime.utcnow(),
+                'date_created':datetime.utcnow()}
+    })
     #validation goes here
     moviesDB.insert_one(movie)
     return redirect(url_for('list_movies'))
@@ -50,11 +59,11 @@ def update_movie(movie_id):
     moviesDB = mongo.db.movies
     moviesDB.update_one( {'_id': ObjectId(movie_id)},
     {"$set":{
-        'movie_name': request.form.get('movie_name'),
+        'movie_name': request.form.get('movie_name').lower(),
         'art': request.form.get('art'),
-        'released': int(request.form.get('released')),
+        'released': int(request.form.get('released') or 0),
         'genre': request.form.get('genre'),
-        'runtime':int(request.form.get('runtime')),
+        'runtime':int(request.form.get('runtime') or 0),
         'rating':request.form.get('rating'),
         'director':request.form.get('director'),
         'plot':request.form.get('plot'),
