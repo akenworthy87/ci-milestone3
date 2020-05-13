@@ -45,7 +45,7 @@
 </div>
 
 <hr>
-<p>Record Created: {{movie.meta.date_created if movie.meta else ''}}</p>
-<p>Record Updated: {{movie.meta.date_updated if movie.meta else ''}}</p>
+<p>Record Created: {{movie.meta.date_created.strftime('%Y-%b-%d %H:%M:%S') if movie.meta else ''}}</p>
+<p>Record Updated: {{movie.meta.date_updated.strftime('%Y-%b-%d %H:%M:%S') if movie.meta else ''}}</p>
 
 {% endblock %}
