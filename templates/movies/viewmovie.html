@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col s12">
-        <h4>{{movie.movie_name}}</h4> <a href="{{url_for('edit_movie', movie_id=movie._id)}}">Edit Record</a>
+        <h4 class="capitalize">{{movie.movie_name}}</h4> <a href="{{url_for('edit_movie', movie_id=movie._id)}}">Edit Record</a>
     </div>
 </div>
 
@@ -11,9 +11,9 @@
         <img class="responsive-img thumbnail" src={{movie.art}}></img>
     </div>
     <div class="col s12 m9">
-        <p><strong>Release Date: </strong>{{movie.released}}</p>
+        <p><strong>Release Date: </strong>{{movie.released if movie.released > 0 else ''}}</p>
         <p><strong>Genre: </strong>{{movie.genre}}</p>
-        <p><strong>Runtime: </strong>{{movie.runtime}}</p>
+        <p><strong>Runtime: </strong>{{movie.runtime if movie.runtime > 0 else ''}}</p>
         <p><strong>Age Rating: </strong>{{movie.rating}}</p>
         <p><strong>Director: </strong>{{movie.director}}</p>
     </div>
