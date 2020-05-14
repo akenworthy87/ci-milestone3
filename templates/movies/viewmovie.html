@@ -2,7 +2,8 @@
 
 <div class="row">
     <div class="col s12">
-        <h4 class="capitalize">{{movie.movie_name}}</h4> <a href="{{url_for('edit_movie', movie_id=movie._id)}}">Edit Record</a>
+        <h4 class="capitalize">{{movie.movie_name}}</h4> 
+        <a href="{{url_for('edit_movie', movie_id=movie._id)}}">Edit Record</a>
     </div>
 </div>
 
@@ -47,5 +48,7 @@
 <hr>
 <p>Record Created: {{movie.meta.date_created.strftime('%Y-%b-%d %H:%M:%S') if movie.meta else ''}}</p>
 <p>Record Updated: {{movie.meta.date_updated.strftime('%Y-%b-%d %H:%M:%S') if movie.meta else ''}}</p>
+
+<p><a href="{{url_for('remove_movie', movie_id=movie._id)}}">Remove Record</a></p>
 
 {% endblock %}
