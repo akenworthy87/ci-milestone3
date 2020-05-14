@@ -46,8 +46,8 @@
 </div>
 
 <hr>
-<p>Record Created: {{movie.meta.date_created.strftime('%Y-%b-%d %H:%M:%S') if movie.meta else ''}}</p>
-<p>Record Updated: {{movie.meta.date_updated.strftime('%Y-%b-%d %H:%M:%S') if movie.meta else ''}}</p>
+<p>Record Created: {{movie.meta.date_created.strftime('%Y-%b-%d %H:%M:%S') if movie.meta.date_created else ''}}</p>
+<p>Record Updated: {{movie.meta.date_updated.strftime('%Y-%b-%d %H:%M:%S') if movie.meta.date_updated else ''}}</p>
 
 <p><a href="{{url_for('remove_movie', movie_id=movie._id)}}">Remove Record</a></p>
 
