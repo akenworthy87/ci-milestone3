@@ -26,6 +26,12 @@ def list_movies():
     # Returns a list of movie records, by name ASC
     return render_template("movies/movies.html", movies=mongo.db.movies.find().sort('movie_name', 1))
 
+## View Movie
+@app.route('/view_movie/<movie_id>')
+def view_movie(movie_id):
+    movie_details = mongo.db.movies.find_one({"_id": ObjectId(movie_id)})
+    return render_template('movies/viewmovie.html', movie=movie_details)
+
 ## Add movie functions
 @app.route('/add_movie')
 def add_movie():
@@ -51,8 +57,7 @@ def insert_movie():
 @app.route('/edit_movie/<movie_id>')
 def edit_movie(movie_id):
     the_movie = mongo.db.movies.find_one({"_id": ObjectId(movie_id)})
-    all_categories = mongo.db.categories.find()
-    return render_template('movies/editmovie.html', movie=the_movie, categories=all_categories)
+    return render_template('movies/editmovie.html', movie=the_movie)
 
 @app.route('/update_movie/<movie_id>', methods=['POST'])
 def update_movie(movie_id):
@@ -71,12 +76,16 @@ def update_movie(movie_id):
     }})
     return redirect(url_for('view_movie', movie_id=movie_id))
 
-## View Movie
-@app.route('/view_movie/<movie_id>')
-def view_movie(movie_id):
-    movie_details = mongo.db.movies.find_one({"_id": ObjectId(movie_id)})
-    return render_template('movies/viewmovie.html', movie=movie_details)
+## Delete movie functions
+@app.route('/remove_movie/<movie_id>')
+def remove_movie(movie_id):
+    the_movie = mongo.db.movies.find_one({"_id": ObjectId(movie_id)},{'movie_id':1,'movie_name':1})
+    return render_template('movies/removemovie.html', movie=the_movie)
 
+@app.route('/delete_movie/<movie_id>')
+def delete_movie(movie_id):
+    mongo.db.movies.remove({'_id':ObjectId(movie_id)})
+    return redirect(url_for('home'))
 
 # Validation Functions #########################################################
 def validate_movie(movie):
