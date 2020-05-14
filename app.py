@@ -107,6 +107,7 @@ def validate_movie(movie_in):
         movie_out['movie_name'] = movie_in['movie_name'].lower()
     
     # Transformation
+    ## Probably should do a regex values are only numbers before converting
     movie_out.update({
         'released':int(movie_in['released'] or 0),
         'runtime':int(movie_in['runtime'] or 0),

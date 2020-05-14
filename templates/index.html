@@ -16,7 +16,7 @@
                 {{movie.movie_name}}
             </a>
         </td>
-        <td>{{movie.released if movie.released > 0 else ''}}</td>
+        <td>{{movie.released if movie.released > 0 else '-'}}</td>
         <td>{{movie.genre}}</td>
     </tr>
     {% endfor %}
