@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 <h4>Edit Movie: {{movie.movie_name}}</h4>
 
+<!--Displays errors if validator returns them-->
 {% if errors %}
 <div class="card-panel red darken-3 white-text">
     <h6>Errors:</h6>
@@ -12,6 +13,7 @@
 </div>
 {% endif %}
 
+<!--Edit movie form-->
 <form action="{{url_for('update_movie', movie_id=movie._id)}}" method="POST" class="col s12">
     <div class="input-field col s12">
         <input type="text" id="movie_name" name="movie_name" required value="{{movie.movie_name}}" />

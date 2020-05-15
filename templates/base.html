@@ -18,26 +18,35 @@
     <header>
         <nav>
             <div class="nav-wrapper">
+                <!--Desktop nav menu-->
                 <a href="{{url_for('home')}}" class="brand-logo">IFDB</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="{{url_for('home')}}">Home</a></li>
-                    <li><a href="{{url_for('list_movies')}}">Movies</a></li>
+                    <li><a href="{{url_for('list_movies')}}">List All Movies</a></li>
+                    <li><a href="{{url_for('add_movie')}}">Add Movie</a></li>
                 </ul>
 
             </div>
+            <!--Mobile side bar-->
             <ul class="sidenav" id="mobile-demo">
                 <li><a href="{{url_for('home')}}">Home</a></li>
-                <li><a href="{{url_for('list_movies')}}">Movies</a></li>
+                <li><a href="{{url_for('list_movies')}}">List All Movies</a></li>
+                <li><a href="{{url_for('add_movie')}}">Add Movie</a></li>
             </ul>
         </nav>
     </header>
+
     <div class="container">
-        {% block content %} {% endblock %}
+        <!--Start content block-->
+        {% block content %} 
+        {% endblock %}
+        <!--End content block-->
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!--Initialises sidebar-->
     <script type="text/javascript">
         $(document).ready(function() {
             $('.sidenav').sidenav();
