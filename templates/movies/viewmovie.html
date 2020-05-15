@@ -2,13 +2,14 @@
 
 <div class="row">
     <div class="col s12">
-        <h4 class="capitalize">{{movie.movie_name}}</h4> <a href="{{url_for('edit_movie', movie_id=movie._id)}}">Edit Record</a>
+        <h4 class="capitalize">{{movie.movie_name}}</h4> 
+        <a href="{{url_for('edit_movie', movie_id=movie._id)}}">Edit Record</a>
     </div>
 </div>
 
 <div class="row">
     <div class="col s12 m3 center-align">
-        <img class="responsive-img thumbnail" src={{movie.art}}></img>
+        <img class="responsive-img thumbnail" src="{{movie.art if movie.art else url_for('static', filename='images/ifdb-faded.png')}}"></img>
     </div>
     <div class="col s12 m9">
         <p><strong>Release Date: </strong>{{movie.released if movie.released > 0 else ''}}</p>
@@ -22,17 +23,6 @@
 <div class="row">
     <div class="col s12">
         <div style="white-space: pre-wrap;">{{movie.plot}}</div>
-    </div>
-</div>
-
-<h5>Actors</h5>
-<div class="row">
-    <div class="col s12">
-        {% if movie.actors %}
-            {% for actor, value in movie.actors.items() %}
-            <span>{{actor}}</span> 
-            {% endfor %}
-        {% endif %}
     </div>
 </div>
 
@@ -56,7 +46,9 @@
 </div>
 
 <hr>
-<p>Record Created: {{movie.meta.date_created if movie.meta else ''}}</p>
-<p>Record Updated: {{movie.meta.date_updated if movie.meta else ''}}</p>
+<p>Record Created: {{movie.meta.date_created.strftime('%Y-%b-%d %H:%M:%S') if movie.meta.date_created else '-'}}</p>
+<p>Record Updated: {{movie.meta.date_updated.strftime('%Y-%b-%d %H:%M:%S') if movie.meta.date_updated else '-'}}</p>
+
+<p><a href="{{url_for('remove_movie', movie_id=movie._id)}}">Remove Record</a></p>
 
 {% endblock %}

@@ -1,53 +1,49 @@
 {% extends 'base.html' %} {% block content %}
 <h4>Add Movie</h4>
+
+{% if errors %}
+<div class="card-panel red darken-3 white-text">
+    <h6>Errors:</h6>
+    <ul>
+        {% for error in errors %}
+        <li>{{error}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
 <form action="{{url_for('insert_movie')}}" method="POST" class="col s12">
-    <div class="row">
-        <div class="input-field col s12">
-            <input type="text" id="movie_name" name="movie_name" required />
-            <label for="movie_name">Movie Name</label>
-        </div>
+    <div class="input-field col s12">
+        <input type="text" id="movie_name" name="movie_name" required value="{{movie.movie_name}}" />
+        <label for="movie_name">Movie Name</label>
     </div>
-    <div class="row">
-        <div class="input-field col s12">
-            <input type="text" id="art" name="art" />
-            <label for="art">Cover Art Link</label>
-        </div>
+    <div class="input-field col s12">
+        <input type="text" id="art" name="art" value="{{movie.art}}" />
+        <label for="art">Cover Art Link</label>
     </div>
-    <div class="row">
-        <div class="input-field col s12">
-            <input type="number" id="released" name="released" />
-            <label for="released">Release Year</label>
-        </div>
+    <div class="input-field col s12">
+        <input type="number" id="released" name="released" value="{{movie.released}}" />
+        <label for="released">Release Year</label>
     </div>
-    <div class="row">
-        <div class="input-field col s12">
-            <input type="text" id="genre" name="genre" />
-            <label for="genre">Genre</label>
-        </div>
+    <div class="input-field col s12">
+        <input type="text" id="genre" name="genre" value="{{movie.genre}}" />
+        <label for="genre">Genre</label>
     </div>
-    <div class="row">
-        <div class="input-field col s12">
-            <input type="number" id="runtime" name="runtime" />
-            <label for="runtime">Runtime</label>
-        </div>
+    <div class="input-field col s12">
+        <input type="number" id="runtime" name="runtime" value="{{movie.runtime}}" />
+        <label for="runtime">Runtime</label>
     </div>
-    <div class="row">
-        <div class="input-field col s12">
-            <input type="text" id="rating" name="rating" />
-            <label for="rating">Age Rating</label>
-        </div>
+    <div class="input-field col s12">
+        <input type="text" id="rating" name="rating" value="{{movie.rating}}" />
+        <label for="rating">Age Rating</label>
     </div>
-    <div class="row">
-        <div class="input-field col s12">
-            <input type="text" id="director" name="director" />
-            <label for="director">Director</label>
-        </div>
+    <div class="input-field col s12">
+        <input type="text" id="director" name="director" value="{{movie.director}}" />
+        <label for="director">Director</label>
     </div>
-    <div class="row">
-        <div class="input-field col s12">
-            <textarea rows="5" id="plot" name="plot"></textarea>
-            <label for="plot">Plot Summary</label>
-        </div>
+    <div class="input-field col s12">
+        <textarea rows="5" id="plot" name="plot">{{movie.plot}}</textarea>
+        <label for="plot">Plot Summary</label>
     </div>
     <input type="submit" value="Submit" />
 </form>
