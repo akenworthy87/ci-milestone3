@@ -9,7 +9,7 @@
 
 <div class="row">
     <div class="col s12 m3 center-align">
-        <img class="responsive-img thumbnail" src={{movie.art}}></img>
+        <img class="responsive-img thumbnail" src="{{movie.art if movie.art else url_for('static', filename='images/ifdb-faded.png')}}"></img>
     </div>
     <div class="col s12 m9">
         <p><strong>Release Date: </strong>{{movie.released if movie.released > 0 else ''}}</p>
