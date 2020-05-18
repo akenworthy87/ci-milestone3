@@ -1,0 +1,11 @@
+{# Displays a bulletpoint list of errors #}
+{% if errors %}
+<div class="card-panel red darken-3 white-text">
+    <h6>Errors:</h6>
+    <ul>
+        {% for error in errors %}
+        <li>{{error}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
