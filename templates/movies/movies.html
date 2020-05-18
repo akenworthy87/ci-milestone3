@@ -3,16 +3,8 @@
 <!--Movies Table-->
 <h5>Movies</h5>
 <a href="{{url_for('add_movie')}}">Add Movie</a>
-
-<form action="{{url_for('search_movies')}}" method="POST">
-    <div class="col s12">
-        Search Movies:
-        <div class="input-field inline">
-            <input type="search" id="msearch" name="msearch">
-        </div>
-        <input type="submit">
-    </div>
-</form>
+<!--Movies search box-->
+{% include 'movies/searchmovies.html' %}
 <!--Lists all movie records, ordered by name-->
 {% include 'movies/movietable.html' %}
 {% endblock %}

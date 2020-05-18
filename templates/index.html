@@ -3,6 +3,8 @@
 <!--Movies Table-->
 <h5>Latest Movies</h5>
 <a href="{{url_for('list_movies')}}">List All Movies</a>
+<!--Movies search box-->
+{% include 'movies/searchmovies.html' %}
 <!--Makes a table with last ten updated records-->
 {% include 'movies/movietable.html' %}
 {% endblock %}
