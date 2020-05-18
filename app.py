@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from datetime import datetime
+import re
 
 app = Flask(__name__)
 
@@ -73,7 +74,7 @@ def insert_movie():
     if form_errors:
         return render_template('movies/createmovie.html', movie=movie_form, errors=form_errors)
     # Update datetime stamps
-    movie_form.update({'meta.date_updated':datetime.utcnow(),'meta.date_created':datetime.utcnow()})
+    movie_form.update({'meta':{'date_updated':datetime.utcnow(),'date_created':datetime.utcnow()}})
     # Insert record
     moviesDB.insert_one(movie_form)
     return redirect(url_for('home'))
@@ -133,28 +134,29 @@ This is done to prevent extra data being inserted by malicious users
 def validate_movie(movie_in):
     errors = []
     movie_out = {}
-    # Validation - only req'ed is movie name
+    # Validation
     if not movie_in['movie_name']:
         errors.append('A movie name is required')
-    else:
-        movie_out['movie_name'] = movie_in['movie_name'].lower()
+    if movie_in['released'] and not re.match('^[0-9]+$', movie_in['released']):
+        errors.append('Please enter only numbers for release year')
+    if movie_in['runtime'] and not re.match('^[0-9]+$', movie_in['runtime']):
+        errors.append('Please enter only numbers for runtime')
     
-    # Transformation
-    ## Probably should do a regex check that values are only numbers before converting
-    movie_out.update({
-        'released':int(movie_in['released'] or 0),
-        'runtime':int(movie_in['runtime'] or 0),
-    })
-    
-    # Add rest of data
-    movie_out.update({
-        'art': request.form.get('art'),
-        'genre': request.form.get('genre'),
-        'rating':request.form.get('rating'),
-        'director':request.form.get('director'),
-        'plot':request.form.get('plot'),
-    })
-    
+    if not errors:
+        # Transformation
+        movie_out.update({
+            'movie_name':movie_in['movie_name'].lower(),
+            'released':int(movie_in['released'] or 0),
+            'runtime':int(movie_in['runtime'] or 0),
+        })
+        # Add rest of data
+        movie_out.update({
+            'art': request.form.get('art'),
+            'genre': request.form.get('genre'),
+            'rating':request.form.get('rating'),
+            'director':request.form.get('director'),
+            'plot':request.form.get('plot'),
+        })
     return movie_out, errors
 
 # Misc #########################################################################
