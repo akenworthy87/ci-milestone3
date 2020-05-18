@@ -151,11 +151,11 @@ def validate_movie(movie_in):
         })
         # Add rest of data
         movie_out.update({
-            'art': request.form.get('art'),
-            'genre': request.form.get('genre'),
-            'rating':request.form.get('rating'),
-            'director':request.form.get('director'),
-            'plot':request.form.get('plot'),
+            'art': movie_in['art'],
+            'genre': movie_in['genre'],
+            'rating':movie_in['rating'],
+            'director':movie_in['director'],
+            'plot':movie_in['plot'],
         })
     return movie_out, errors
 
