@@ -23,8 +23,8 @@ Perhaps it is a group of film enthusiasts that want to catalogue and share their
 ###### User 2
 > As the above user, I want to then go to a page containing information about the movie, so I can be informed about the movie
 
-###### User 3
-> As a movie reviewer, I want to be able to add a review to a movie, so I give my opinion of the movie to other uses
+###### ~~User 3~~
+> ~~As a movie reviewer, I want to be able to add a review to a movie, so I give my opinion of the movie to other uses~~
 
 ###### ~~User 4~~
 > ~~As an actor fan, I want to be able to go to a page with a list of actors and I want to be able to search it, so I can find an actor I like and read about them and see what other movies they are in~~
@@ -44,8 +44,8 @@ Perhaps it is a group of film enthusiasts that want to catalogue and share their
 ###### ~~User 9~~
 > ~~As a contributor, I want to be able to edit the details of an existing actor, to correct mistakes, or add new/missing information etc~~
 
-###### User 10
-> As a maintainer, I want to be able to delete reviews on movies, to remove inappropriate ones
+###### ~~User 10~~
+> ~~As a maintainer, I want to be able to delete reviews on movies, to remove inappropriate ones~~
 
 
 ### Designs
@@ -127,8 +127,6 @@ Example:
 
 ###### Actors
 
-
-
 - id - unique id
 - actor_name - name of the actor
 - photo - headshot photo of the actor
@@ -166,7 +164,9 @@ In addition, you may also use this section to discuss plans for additional featu
 ### Features Left to Implement
 - Authentication: If the site would be to grow in scope to expand its userbase to the public, or even a larger private group, an authentication system would be needed as some people are trolls and enjoy deleting/defacing the records 
 - Actors pages: Originally I had intended to have a section for actor information, and had planned to link them to the movies pages and vice versa via a sub-object containing the Unique IDs and Name of the target, 
-  this was easy to do on the backend and I did have a working proof of concept on the frontend, but I was unable to find an elegate way to implement the full feature on the frontend, so it has been cut.
+  this was easy to do on the backend and I did have a working proof of concept on the frontend, but I was unable to find an elegant way to implement the full feature on the frontend, so it has been cut.
+- Reviews feature: This was removed for time constraints. I would also change the way I planned to implement, originally I was going to store the reviews in an array of objects on the movie db record,  
+  which would've been a bit weird and not very scalable. Instead I would've opted for a seperate table of reviews, with a reference to the movie's unique id, as with a traditional relational database. 
 
 ## Technologies Used
 

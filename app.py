@@ -153,9 +153,9 @@ def validate_movie(movie_in):
         movie_out.update({
             'art': movie_in['art'],
             'genre': movie_in['genre'],
-            'rating':movie_in['rating'],
-            'director':movie_in['director'],
-            'plot':movie_in['plot'],
+            'rating': movie_in['rating'],
+            'director': movie_in['director'],
+            'plot': movie_in['plot'],
         })
     return movie_out, errors
 

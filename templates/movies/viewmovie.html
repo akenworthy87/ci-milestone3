@@ -31,25 +31,6 @@
     </div>
 </div>
 
-<!--Reviews section, still needs work-->
-<h5>Reviews</h5>
-<div class="row">
-    {% for review in movie.reviews %}
-    <div class="col s12 review-header">
-        <div class="row">
-            <div class="col s12 m10">
-                {{review.submitter}} on {{review.date}} 
-            </div>
-            <div class="col s12 m2">
-                Score: {{review.score}}
-            </div>
-        </div>
-    </div>
-    <div class="col s12 review-body">
-        {{review.review}}
-    </div>
-    {% endfor %}
-</div>
 
 <hr>
 <!--Meta data-->
