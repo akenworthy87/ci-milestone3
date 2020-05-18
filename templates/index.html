@@ -1,8 +1,8 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
 <!--Movies Table-->
-<h5><a href="{{url_for('list_movies')}}">Latest Movies</a></h5>
+<h5>Latest Movies</h5>
+<a href="{{url_for('list_movies')}}">List All Movies</a>
 <!--Makes a table with last ten updated records-->
 {% include 'movies/movietable.html' %}
-
-
 {% endblock %}

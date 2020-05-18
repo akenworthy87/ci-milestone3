@@ -30,6 +30,18 @@ Returns a list of movie records, by name ASC
 def list_movies():
     return render_template("movies/movies.html", movies=mongo.db.movies.find().sort('movie_name', 1))
 
+'''
+Takes input from search field
+Converts to lowercase (all movie names are stored as lowercase in DB)
+Finds results, including partial matches, and renders list template
+'''
+## Search Movies
+@app.route('/movies/search', methods=['POST'])
+def search_movies():
+    query = request.form.get('msearch').lower()
+    results = mongo.db.movies.find({"movie_name":{'$regex': query}}).sort('movie_name', 1)
+    return render_template("movies/movies.html", movies=results)
+
 ## View Movie
 '''
 Retrieves movie records via movie_id and renders view template
@@ -92,17 +104,6 @@ def update_movie(movie_id):
     
     moviesDB.update_one( {'_id': ObjectId(movie_id)},
                          {"$set":movie_form})
-    # {"$set":{
-    #     'movie_name': request.form.get('movie_name').lower(),
-    #     'art': request.form.get('art'),
-    #     'released': int(request.form.get('released') or 0),
-    #     'genre': request.form.get('genre'),
-    #     'runtime':int(request.form.get('runtime') or 0),
-    #     'rating':request.form.get('rating'),
-    #     'director':request.form.get('director'),
-    #     'plot':request.form.get('plot'),
-    #     'meta.date_updated':datetime.utcnow()
-    # }})
     return redirect(url_for('view_movie', movie_id=movie_id))
 
 ## Delete movie functions
