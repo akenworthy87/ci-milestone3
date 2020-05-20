@@ -1,26 +1,10 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
 <!--Movies Table-->
-<h5><a href="{{url_for('list_movies')}}">Latest Movies</a></h5>
-<table>
-    <thead>
-        <tr>
-            <th>Movie Name</th>
-            <th>Released</th>
-            <th>Genre</th>
-        </tr>
-    </thead>
-    {% for movie in movies %}
-    <tr>
-        <td class="capitalize">
-            <a href="{{url_for('view_movie', movie_id=movie._id)}}">
-                {{movie.movie_name}}
-            </a>
-        </td>
-        <td>{{movie.released if movie.released > 0 else '-'}}</td>
-        <td>{{movie.genre}}</td>
-    </tr>
-    {% endfor %}
-</table>
-
-
+<h5>Latest Movies</h5>
+<a href="{{url_for('list_movies')}}">List All Movies</a>
+<!--Movies search box-->
+{% include 'movies/searchmovies.html' %}
+<!--Makes a table with last ten updated records-->
+{% include 'movies/movietable.html' %}
 {% endblock %}

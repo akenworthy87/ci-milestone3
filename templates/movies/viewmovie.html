@@ -1,5 +1,7 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
 
+<!--Title section-->
 <div class="row">
     <div class="col s12">
         <h4 class="capitalize">{{movie.movie_name}}</h4> 
@@ -7,6 +9,7 @@
     </div>
 </div>
 
+<!--Details section-->
 <div class="row">
     <div class="col s12 m3 center-align">
         <img class="responsive-img thumbnail" src="{{movie.art if movie.art else url_for('static', filename='images/ifdb-faded.png')}}"></img>
@@ -20,32 +23,17 @@
     </div>
 </div>
 
+<!--Plot section-->
 <div class="row">
     <div class="col s12">
+        <!--Makes div respect whitespace for plot's linebreaks etc-->
         <div style="white-space: pre-wrap;">{{movie.plot}}</div>
     </div>
 </div>
 
-<h5>Reviews</h5>
-<div class="row">
-    {% for review in movie.reviews %}
-    <div class="col s12 review-header">
-        <div class="row">
-            <div class="col s12 m10">
-                {{review.submitter}} on {{review.date}} 
-            </div>
-            <div class="col s12 m2">
-                Score: {{review.score}}
-            </div>
-        </div>
-    </div>
-    <div class="col s12 review-body">
-        {{review.review}}
-    </div>
-    {% endfor %}
-</div>
 
 <hr>
+<!--Meta data-->
 <p>Record Created: {{movie.meta.date_created.strftime('%Y-%b-%d %H:%M:%S') if movie.meta.date_created else '-'}}</p>
 <p>Record Updated: {{movie.meta.date_updated.strftime('%Y-%b-%d %H:%M:%S') if movie.meta.date_updated else '-'}}</p>
 

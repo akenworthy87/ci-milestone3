@@ -1,6 +1,8 @@
 {% extends 'base.html' %} {% block content %}
 <h4 class="capitalize">Remove: {{movie.movie_name}}</h4> 
 <p>Confirm?</p>
+<!--Confirm runs python code to delete record-->
 <button onclick="location.href='{{url_for('delete_movie', movie_id=movie._id)}}'" type="button">Confirm</button>
+<!--Cancel takes user back to view page for movie record-->
 <button onclick="location.href='{{url_for('view_movie', movie_id=movie._id)}}'" type="button">Cancel</button>
 {% endblock %}
