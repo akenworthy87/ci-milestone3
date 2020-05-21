@@ -13,62 +13,62 @@ app.config["MONGO_URI"] = os.environ.get('MONGODB_URI')
 mongo = PyMongo(app)
 
 # Main Page ####################################################################
-'''
-Returns a list of the last ten updated movie records
-'''
 @app.route('/')
 @app.route('/home')
 def home():
+    '''
+    Returns a list of the last ten updated movie records
+    '''
     return render_template("index.html", movies=mongo.db.movies.find().sort('meta.date_updated', -1).limit(10))
 
 
 # Movie Pages ##################################################################
 ## Movies list
-''' 
-Returns a list of movie records, by name ASC 
-'''
 @app.route('/movies')
 def list_movies():
+    ''' 
+    Returns a list of movie records, by name ASC 
+    '''
     return render_template("movies/movies.html", movies=mongo.db.movies.find().sort('movie_name', 1))
 
-'''
-Takes input from search field
-Converts to lowercase (all movie names are stored as lowercase in DB)
-Finds results, including partial matches, and renders list template
-'''
 ## Search Movies
 @app.route('/movies/search', methods=['POST'])
 def search_movies():
+    '''
+    Takes input from search field
+    Converts to lowercase (all movie names are stored as lowercase in DB)
+    Finds results, including partial matches, and renders list template
+    '''
     query = request.form.get('msearch').lower()
     results = mongo.db.movies.find({"movie_name":{'$regex': query}}).sort('movie_name', 1)
     return render_template("movies/movies.html", movies=results)
 
 ## View Movie
-'''
-Retrieves movie records via movie_id and renders view template
-'''
 @app.route('/view_movie/<movie_id>')
 def view_movie(movie_id):
+    '''
+    Retrieves movie records via movie_id and renders view template
+    '''
     movie_details = mongo.db.movies.find_one({"_id": ObjectId(movie_id)})
     return render_template('movies/viewmovie.html', movie=movie_details)
 
 
 ## Add movie functions
-'''
-Renders page for create movie record form
-'''
 @app.route('/add_movie')
 def add_movie():
+    '''
+    Renders page for create movie record form
+    '''
     return render_template('movies/createmovie.html', movie={})
 
-'''
-Gets form data from create movie page
-Validates. If error, returns to create page with errors and repopulates form with submitted data
-           If passes updates timestamps and inserts new record
-Returns home
-'''
 @app.route('/insert_movie', methods=['POST'])
 def insert_movie():
+    '''
+    Gets form data from create movie page
+    Validates. If error, returns to create page with errors and repopulates form with submitted data
+               If passes updates timestamps and inserts new record
+    Returns home
+    '''
     moviesDB = mongo.db.movies
     movie_form, form_errors = validate_movie(request.form.to_dict())
     if form_errors:
@@ -80,22 +80,22 @@ def insert_movie():
     return redirect(url_for('home'))
 
 ## Edit movie functions
-''' 
-Retrives movie record and passes to edit movie form 
-'''
 @app.route('/edit_movie/<movie_id>')
 def edit_movie(movie_id):
+    ''' 
+    Retrives movie record and passes to edit movie form 
+    '''
     the_movie = mongo.db.movies.find_one({"_id": ObjectId(movie_id)})
     return render_template('movies/editmovie.html', movie=the_movie)
 
-'''
-Gets form data from edit movie page
-Validates. If error, returns to edit page with errors and repopulates form with submitted data
-           If passes updates timestamps and updates record
-Returns view page for movie
-'''
 @app.route('/update_movie/<movie_id>', methods=['POST'])
 def update_movie(movie_id):
+    '''
+    Gets form data from edit movie page
+    Validates. If error, returns to edit page with errors and repopulates form with submitted data
+               If passes updates timestamps and updates record
+    Returns view page for movie
+    '''
     moviesDB = mongo.db.movies
     movie_form, form_errors = validate_movie(request.form.to_dict())
     if form_errors:
@@ -108,30 +108,30 @@ def update_movie(movie_id):
     return redirect(url_for('view_movie', movie_id=movie_id))
 
 ## Delete movie functions
-'''
-Gets movie name and id, renders confirmation page to ask for deletion confirmation
-'''
 @app.route('/remove_movie/<movie_id>')
 def remove_movie(movie_id):
+    '''
+    Gets movie name and id, renders confirmation page to ask for deletion confirmation
+    '''
     the_movie = mongo.db.movies.find_one({"_id": ObjectId(movie_id)},{'movie_id':1,'movie_name':1})
     return render_template('movies/removemovie.html', movie=the_movie)
 
-'''
-When confirm button clicked, deletes record, returns to home
-'''
 @app.route('/delete_movie/<movie_id>')
 def delete_movie(movie_id):
+    '''
+    When confirm button clicked, deletes record, returns to home
+    '''
     mongo.db.movies.remove({'_id':ObjectId(movie_id)})
     return redirect(url_for('home'))
 
 # Validation Functions #########################################################
-'''
-Takes the submitted form, checks required data is present
-Does required transformations
-Builds record in expected state for DB insertion/updating
-This is done to prevent extra data being inserted by malicious users
-'''
 def validate_movie(movie_in):
+    '''
+    Takes the submitted form, checks required data is present
+    Does required transformations
+    Builds record in expected state for DB insertion/updating
+    This is done to prevent extra data being inserted by malicious users
+    '''
     errors = []
     movie_out = {}
     # Validation
@@ -160,12 +160,12 @@ def validate_movie(movie_in):
     return movie_out, errors
 
 # Misc #########################################################################
-'''
-Checks if Env-var APPDEBUG is set to true
-If anything else, including 'True' (as this check is case sensitive), debug mode is set to false. 
-This allows live environ to run in debug false without having to change dev environment settings. 
-'''
 if __name__ == '__main__':
+    '''
+    Checks if Env-var APPDEBUG is set to true
+    If anything else, including 'True' (as this check is case sensitive), debug mode is set to false. 
+    This allows live environ to run in debug false without having to change dev environment settings. 
+    '''
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
         debug=os.environ.get('APPDEBUG') == 'true')
