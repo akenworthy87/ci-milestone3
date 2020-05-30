@@ -1,3 +1,5 @@
+{# View Movie - Displays the various data in a movie records, has a link to edit the record at the top, another at the bottom to remove the record #}
+
 {% extends 'base.html' %} 
 {% block content %}
 
@@ -11,10 +13,10 @@
 
 <!--Details section-->
 <div class="row">
-    <div class="col s12 m3 center-align">
+    <div id="movie-thumbnail" class="col s12 m3 center-align">
         <img class="responsive-img thumbnail" src="{{movie.art if movie.art else url_for('static', filename='images/ifdb-faded.png')}}"></img>
     </div>
-    <div class="col s12 m9">
+    <div id="movie-stat-box" class="col s12 m9">
         <p><strong>Release Date: </strong>{{movie.released if movie.released > 0 else ''}}</p>
         <p><strong>Genre: </strong>{{movie.genre}}</p>
         <p><strong>Runtime: </strong>{{movie.runtime if movie.runtime > 0 else ''}}</p>
@@ -27,7 +29,7 @@
 <div class="row">
     <div class="col s12">
         <!--Makes div respect whitespace for plot's linebreaks etc-->
-        <div style="white-space: pre-wrap;">{{movie.plot}}</div>
+        <p id="movie-plot">{{movie.plot if movie.plot else '<em>No Synopsis stored - edit and add one!</em>'|safe}}</p>
     </div>
 </div>
 

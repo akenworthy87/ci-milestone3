@@ -1,3 +1,6 @@
+{# This template renders the passed through movie records dictionary as a table, with: title, released year, and genre #}
+{# First checks to see if returned records are more than zero, if yes: displays table, if no: gives message that no records to display #}
+{% if movies.count() > 0 %}
 <table>
     <thead>
         <tr>
@@ -6,6 +9,7 @@
             <th>Genre</th>
         </tr>
     </thead>
+
     {% for movie in movies %}
     <tr>
         <td class="capitalize">
@@ -18,3 +22,6 @@
     </tr>
     {% endfor %}
 </table>
+{% else %}
+<p><em>No results found.</em></p>
+{% endif %}

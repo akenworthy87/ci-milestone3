@@ -167,6 +167,8 @@ In addition, you may also use this section to discuss plans for additional featu
   this was easy to do on the backend and I did have a working proof of concept on the frontend, but I was unable to find an elegant way to implement the full feature on the frontend, so it has been cut.
 - Reviews feature: This was removed for time constraints. I would also change the way I planned to implement, originally I was going to store the reviews in an array of objects on the movie db record,  
   which would've been a bit weird and not very scalable. Instead I would've opted for a seperate table of reviews, with a reference to the movie's unique id, as with a traditional relational database. 
+- A pagination system will need to be added to the Movies List page once the DB expands above a certain number of records.
+- Front End - the current frontend is a barebones proof of concept, I have only implemented the bare minimum CSS to make the site work as expected, the full site would most likely want to change from the default Materialize colour scheme.
 
 ## Technologies Used
 

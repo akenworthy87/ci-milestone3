@@ -1,7 +1,9 @@
+{# All Movies - contains a search box, and a table that displays all movie records in DB #}
+
 {% extends 'base.html' %} 
 {% block content %}
 <!--Movies Table-->
-<h5>Movies</h5>
+<h5><a href="{{url_for('list_movies')}}">All Movies</a></h5>
 <a href="{{url_for('add_movie')}}">Add Movie</a>
 <!--Movies search box-->
 {% include 'movies/searchmovies.html' %}
