@@ -14,7 +14,7 @@
 <!--Details section-->
 <div class="row">
     <div id="movie-thumbnail" class="col s12 m3 center-align">
-        <img class="responsive-img thumbnail" src="{{movie.art if movie.art else url_for('static', filename='images/ifdb-faded.png')}}"></img>
+        <img class="responsive-img thumbnail" alt="Movie Art" src="{{movie.art if movie.art else url_for('static', filename='images/ifdb-faded.png')}}" />
     </div>
     <div id="movie-stat-box" class="col s12 m9">
         <p><strong>Release Date: </strong>{{movie.released if movie.released > 0 else ''}}</p>
