@@ -1,3 +1,11 @@
+html {
+  background-color: #ececec;
+}
+
+nav {
+  background-color: #106921;
+}
+
 /* Movie artwork thumbnail */
 .thumbnail {
     max-height: 15em;
