@@ -76,4 +76,7 @@ Testing the Deployment instructions will be done via creating new Heroku and loc
     which is why the setting/updating meta.timestamps is done differently in the create and update movie functions.
     The Insert function does not support {'parent.child':value} syntax and will throw an error about the dot, so requires the movie_form dictionary to have the meta records appended in the {'parent':{'child':value}} syntax.  
     The Update function does not work correctly with the above, as updating the date_updated timestamp would cause the meta object to lose the date_created attribute. So for the Update function it's $Set attribute required the meta object's child to be update via the {'parent.child':value} syntax.
-
+- Tested to see what happens if special characters or HTML is submitted as part of the form data, e.g. in plot
+    - MongoDB will store them as submitted.
+    - Flask will handle HTML in strings by converting certain characters to a facsimile character, which the browser won't see as HTML tags, this offers protection against HTML injection.
+    - Summary: Although Flask does offer protection in outputted DB data it doesn't not protect against potentionally malicious data being stored in the DB. An additional conversion rule added to the validation function would probably be a good idea. 
