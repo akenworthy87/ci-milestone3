@@ -1,4 +1,4 @@
-# CI-Milestone 3: Internet Film Database
+# CI-Milestone 3: Internal Film Database
 
 The purpose of this project will be to make a web accessible database of films; users will be able to view, add, and edit records of films, ~~and the same for actors~~.
 
@@ -146,7 +146,7 @@ Example:
 
 For Desktop wireframes see [docs/wireframes/desktop.pdf](docs/wireframes/desktop.pdf)
 
-For Mobile wireframes see [TBC]
+For Mobile wireframes see [docs/wireframes/mobile.pdf](docs/wireframes/mobile.pdf)
 
 
 ## Features
@@ -181,6 +181,8 @@ In this section, you should go over the different parts of your project, and des
 - A pagination system will need to be added to the Movies List page once the DB expands above a certain number of records.
 - Front End: the current frontend is a barebones proof of concept, I have only implemented the bare minimum CSS to make the site work as expected, one thing to possible adjust is the desktop view - it is a bit left side heavy.
 - File uploading: a feature to allow users to upload images to the site to use for the movie art, instead of the current system of hotlinking to an external source.
+- MongoDB Connection string: might be better to split this up so username, password, and db are stored as separate env vars and replace the parts of the connection string?
+- Clean Requirements.txt: there's a lot of entries in here that pip3 picks up from AWS C9's environment which aren't actually required.
 
 ## Technologies Used
 
@@ -200,7 +202,7 @@ In this section, you should go over the different parts of your project, and des
 ###### Frameworks & Libraries
 
 - [MaterializeCSS](https://materializecss.com/)
-	- CSS framework that provides a collection of prebuilt styles and responsive design.
+	- CSS framework that provides a collection of prebuilt styles responsive design, and nav bar features.
 - [JQuery](https://jquery.com)
   - A JavaScript framework to simplify DOM manipulation. Required by Materialize.
 - [Flask](https://flask.palletsprojects.com/en/1.1.x/)
@@ -236,34 +238,63 @@ In this section, you should go over the different parts of your project, and des
 
 ## Testing
 
-In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
-
-Whenever it is feasible, prefer to automate your tests, and if you've done so, provide a brief explanation of your approach, link to the test file(s) and explain how to run them.
-
-For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
-
-1. Contact form:
-    1. Go to the "Contact Us" page
-    2. Try to submit the empty form and verify that an error message about the required fields appears
-    3. Try to submit the form with an invalid email address and verify that a relevant error message appears
-    4. Try to submit the form with all inputs valid and verify that a success message appears.
-
-In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
-
-You should also mention in this section any interesting bugs or problems you discovered during your testing, even if you haven't addressed them yet.
-
-If this section grows too long, you may want to split it off into a separate file and link to it from here.
+Testing documentation is located in a separate [TESTING.md document](docs/TESTING.md) located in the docs folder.
 
 ## Deployment
 
-This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages or Heroku).
+#### MongoDB
 
-In particular, you should provide all details of the differences between the deployed version and the development version, if any, including:
-- Different values for environment variables (Heroku Config Vars)?
-- Different configuration files?
-- Separate git branch?
+First create the database to host the data:
 
-In addition, if it is not obvious, you should also describe how to run your code locally.
+1. Login to MongoDB Atlas and create a new cluster or use existing (consult MongoDB documentation for further instructions)
+2. Clusters: Collections: Create a database with desired name, e.g. 'ifdb'
+3. (Optional, recommended) Security: Database Access: Create a user with readwrite access to above database
+4. Clusters: Connect: Connect your application
+    - Driver: Python, Version: 3.11 or later
+    - Copy connection string, change username, password, and dbname components to desired ones created above
+5. Keep note of connection string for below
+
+#### Heroku
+
+To deploy to Heroku: 
+
+1. Create a fork of the github repo
+2. Login to Heroku and create a new app environment (consult Heroku documentation for further instructions)
+3. Deploy: Deployment Method: GitHub. 
+    - Select your connected user/organisation
+    - Enter repo named in step one and search
+    - Select branch to deploy in either Automatic Deploys or Manual Deploy
+    - Press relevant deploy button
+4. Settings: Config Vars: Reveal Config Vars - set the following:
+    - IP: 0.0.0.0
+    - PORT: 5000
+    - APPDEBUG: false (or 'true' (nb:lowercase t) to enable debug mode (best not to))
+    - MONGODB_URI: your MongoDB connection string
+5. Open app and verify app is running okay
+
+#### Local
+
+To deploy Locally:
+
+1. Create a fork of the github repo 
+2. Clone repo to your local environment, e.g. git clone https://github.com/akenworthy87/ci-milestone3.git
+3. Create the following environment variables (consult OS documentation for further information)
+    - APPDEBUG: false (or 'true' (nb:lowercase t) to enable debug mode)
+    - MONGODB_URI: your MongoDB connection string
+4. Install requirements with 'pip3 install -r requirements.txt'
+5. Run with 'python3 app.py'
+6. (Optional) Link Local to Heroku
+    - Login with 'heroku login'
+    - Add git remote with 'heroku git:remote --app [app name]'
+    - Push changes with 'git push heroku master'
+
+
+#### My Deployment
+
+For the deployment of my demo environment, development work was done through AWS cloud9 and uploaded to my git repo's master branch.  
+Periodically I would merge the 'master' dev branch into the 'live' deploy branch.  
+I had set Heroku to automatically deploy from the live branch, so once changes were merged to it Heroku would see this and deploy the changes automatically.  
+The only difference between the live and dev environments was that the local dev environment's APPDEBUG ENV-VAR was set to true and the live Heroku environment had this set to false. Both connect to the same MongoDB database, though I could've separated these.
 
 
 ## Credits
