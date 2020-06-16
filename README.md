@@ -165,19 +165,17 @@ In this section, you should go over the different parts of your project, and des
     Satisfys User 2.
   - Create Movie - provides a form to create a movie record, a stub record can be created with as little as a name.  
     Satisfys User 6.
-  - Edit Movie - provides a form to edit the details of a movie record
+  - Edit Movie - provides a form to edit the details of a movie record.  
     Satisfys User 7.
-  - Remove Movie - provides a system to delete movie records, includes a confirmation page  
+  - Remove Movie - provides a system to delete movie records, includes a confirmation page.  
     Satisfys User 11.
   - Validation - requests to create or edit a movie record are passed through a validation function. This prevents users tampering with the form and inserting junk data, as well as checking that required fields have data present, and data sensitive fields have data in the right format. 
 
 
 ### Features Left to Implement
 - Authentication: If the site would be to grow in scope to expand its userbase to the public, or even a larger private group, an authentication system would be needed as some people are trolls and enjoy deleting/defacing the records 
-- Actors pages: Originally I had intended to have a section for actor information, and had planned to link them to the movies pages and vice versa via a sub-object containing the Unique IDs and Name of the target, 
-  this was easy to do on the backend and I did have a working proof of concept on the frontend, but I was unable to find an elegant way to implement the full feature on the frontend, so it has been cut.
-- Reviews feature: This was removed for time constraints. I would also change the way I planned to implement, originally I was going to store the reviews in an array of objects on the movie db record,  
-  which would've been a bit weird and not very scalable. Instead I would've opted for a separate table of reviews, with a reference to the movie's unique id, as with a traditional relational database. 
+- Actors pages: Originally I had intended to have a section for actor information, and had planned to link them to the movies pages and vice versa via a sub-object containing the Unique IDs and Name of the target, this was easy to do on the backend and I did have a working proof of concept on the frontend, but I was unable to find an elegant way to implement the full feature on the frontend, so it has been cut.
+- Reviews feature: This was removed for time constraints. I would also change the way I planned to implement, originally I was going to store the reviews in an array of objects on the movie db record, which would've been a bit weird and not very scalable. Instead I would've opted for a separate table of reviews, with a reference to the movie's unique id, as with a traditional relational database. 
 - A pagination system will need to be added to the Movies List page once the DB expands above a certain number of records.
 - Front End: the current frontend is a barebones proof of concept, I have only implemented the bare minimum CSS to make the site work as expected, one thing to possible adjust is the desktop view - it is a bit left side heavy.
 - File uploading: a feature to allow users to upload images to the site to use for the movie art, instead of the current system of hotlinking to an external source.
