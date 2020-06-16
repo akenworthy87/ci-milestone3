@@ -214,6 +214,7 @@ In this section, you should go over the different parts of your project, and des
   - A NoSQL Database Engine. Used to provide external hosting of data in the 'Cloud'.
 - [Github](https://github.com/)
 	- Hosting service for Git Software Version Controlled repositories. 
+	- Also provides GitHub Projects - a kanban board system I used to keep track of development tasks
 - [Heroku](https://www.heroku.com/)
   - Cloud-based web hosting service for dynamic websites.
 
