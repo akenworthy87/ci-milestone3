@@ -1,3 +1,5 @@
+{# This is the base template - this contains all the common elements of pages #}
+{# Such as the HEAD, nav elements, and CSS & Scripts #}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,6 +39,7 @@
         </nav>
     </header>
 
+    {# Child templates are injected here #}
     <div class="container">
         <!--Start content block-->
         {% block content %} 

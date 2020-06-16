@@ -1,7 +1,22 @@
+html {
+  background-color: #ececec;
+}
+
+nav {
+  background-color: #106921;
+}
+
+/* Movie artwork thumbnail */
 .thumbnail {
     max-height: 15em;
 }
 
+/* For re-capitalising movie titles */
 .capitalize {
   text-transform: capitalize;
   }
+
+/* Makes div respect whitespace for plot's linebreaks etc */
+#movie-plot {
+  white-space: pre-wrap;
+}
